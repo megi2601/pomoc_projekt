@@ -15,6 +15,9 @@ class Ball{
     std::vector<double> get_c();
     std::vector<double> get_v();
 
+    // update speed and position
+    void update(double);
+
     double get_x();
     double get_y();
     double get_z();

@@ -69,3 +69,13 @@ double Ball::get_y(){
 double Ball::get_z(){
     return coords[2];
 };
+
+void Ball::update(double time_step){
+    std::vector<double> new_c;
+    std::vector<double> g = {0., -9.8, 0};
+    for(int i=0;i<3; i++){
+        new_c.push_back(coords[i]+ speed[i]*time_step + 0.5*g[i]*time_step*time_step);
+    }
+    coords = new_c;
+    speed = {speed[0], speed[1]*g[1], speed[2]};
+}

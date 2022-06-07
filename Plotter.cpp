@@ -8,12 +8,12 @@
 
 namespace plt = matplotlibcpp;
 
-////////////////////////////////////////////// 
+//////////////////////////////////////////////
 // Usuwanie poprzednich rysunków
 ///////////////////////////////////////////////
 void Plotter::clean(){
   system("cd plots; rm -f animation.gif; rm -f frame*.png");
-} 
+}
 
 ///////////////////////////////////////////////////////////////////////////
 // rysowanie obiektów klasy Ball umieszczonych w wektorze
@@ -21,13 +21,13 @@ void Plotter::clean(){
 ///////////////////////////////////////////////////////////////////////////
 void Plotter::plotBalls2D(vector<Ball>  & objects, unsigned int timeStep){
 
-// Ta linijka konieczna w przypadku zdalnego laczenia sie z okwf 
-//plt::backend("Agg");
-  
+// Ta linijka konieczna w przypadku zdalnego laczenia sie z okwf
+  //plt::backend("Agg");
+
   plt::xlim(-1.,1.);
-  plt::ylim(-1.,1.);  
+  plt::ylim(-1.,1.);
   plt::xlabel("x");
-  plt::ylabel("z");
+  plt::ylabel("y");
   for(auto it: objects){
     plotBall(it,false);
   }
@@ -39,31 +39,31 @@ void Plotter::plotBalls2D(vector<Ball>  & objects, unsigned int timeStep){
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// rysowanie jednego obiektu klasy Ball 
+// rysowanie jednego obiektu klasy Ball
 // zapisywanie rysunku do pliku ball.png
 ///////////////////////////////////////////////////////////////////////////
 void Plotter::plotBall(Ball & b, bool write_single_plot){
 
-// Ta linijka konieczna w przypadku zdalnego laczenia sie z okwf 
+// Ta linijka konieczna w przypadku zdalnego laczenia sie z okwf
 //plt::backend("Agg");
-  
-  std::vector<double> x, z;
+
+  std::vector<double> x, y;
   x.push_back(b.get_x());
-  z.push_back(b.get_z());
-  plt::scatter(x,z,80);
+  y.push_back(b.get_y());
+  plt::scatter(x,y,80);
 
   if(write_single_plot){
 
     plt::xlim(-1.,1.);
-    plt::ylim(-1.,1.);  
+    plt::ylim(-1.,1.);
     plt::xlabel("x");
-    plt::ylabel("z");
-    
+    plt::ylabel("y");
+
     plt::save("ball.png");
     plt::close();
   }
-  
-} 
+
+}
 
 ///////////////////////////////////////////////////////////////////////////
 // Tworzenie animacji z plików png
